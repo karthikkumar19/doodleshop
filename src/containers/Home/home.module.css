@@ -1,0 +1,40 @@
+.home{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.leftSection{
+    width: 20%;
+    height: 100%; 
+}
+
+.rightSection{
+    width: 75%;
+    height: 100%;
+}
+
+.category{
+    height: 100%;
+    max-height: 250px;
+    margin: 10px;
+
+}
+.filter{
+    height: 100px;
+   
+    margin: 10px;
+}
+.topProducts{
+    height: 100%;
+    margin: 10px;
+}
+
+.products{
+    height: 100%;
+    margin: 10px;
+   
+}
