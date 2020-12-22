@@ -48,3 +48,17 @@
     color: rgb(198, 197, 202);
     border: 1px solid rgb(198, 197, 202);
   }
+
+  .ContactData {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    text-align: center;
+  padding: 15px;
+}
+
+/* @media (min-width: 600px) {
+    .ContactData {
+        width: 500px;
+    }
+} */
