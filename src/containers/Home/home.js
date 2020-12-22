@@ -2,7 +2,7 @@ import React from 'react';
 import Category from '../Category/category';
 import Filter from '../Filter/filter';
 import TopProducts from '../TopProducts/topProducts';
-import Products from '../Products/products';
+import Products from '../Products/Products';
 import classes from './home.module.css';
 import Button from '@material-ui/core/Button';
 
@@ -15,7 +15,7 @@ const home = () => {
       
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
                         <h3 style={{margin:'5%',marginTop:'2%'}}>Products</h3>
-                        <Button variant="contained" color="secondary" style={{fontSize:'12px',width:'150px',height:'40px',margin:'4%',marginTop:'2%',marginRight:'7%'}}>
+                        <Button variant="contained" color="secondary" style={{fontSize:'12px',width:'150px',height:'40px',margin:'4%',marginTop:'2%',marginRight:'8%'}}>
        <b>Add Product</b> 
       </Button>
 

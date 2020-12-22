@@ -11,3 +11,40 @@
 .element{
     flex: 0 0 33.333333%;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    cursor: pointer;
+    margin-top: 30px;
+  }
+  
+  .pagination a {
+    padding: 10px;
+    border-radius: 5px;
+    outline: 0;
+    margin:10px;
+    border: 1px solid silver;
+    color: gray;
+     text-decoration: none;
+  }
+
+
+
+  
+  .pagination__link {
+    font-weight: bold;
+  }
+  
+  .pagination__link__active a {
+    color: #fff;
+    background: red;
+    border: 1px solid red;
+
+  }
+  
+  .pagination__link__disabled a {
+    color: rgb(198, 197, 202);
+    border: 1px solid rgb(198, 197, 202);
+  }
