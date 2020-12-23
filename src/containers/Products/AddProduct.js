@@ -4,10 +4,22 @@ import classes from './products.module.css';
 import {connect} from 'react-redux';
 import {checkValidity,updateObject} from '../../shared/utility';
 import * as actions from '../../store/action/product';
-
 class AddProduct extends Component {
+   componentWillReceiveProps(props){
+       console.log('props',props.image)
+    var someProperty = {...this.state.orderForm}
+    someProperty.ProductTitle.value = props.name;
+    someProperty.ProductCategory.value = props.category;
+    someProperty.Price.value = props.price;
+    
+  //   someProperty.followers.value = followers;
+  //   someProperty.instaId.value = insta_id;
+  //   someProperty.pageLink.value = link;
+    this.setState({someProperty,checked:props.checked,file:props.image,formIsValid:true,id:props.id})
+   }
   constructor(props){
-    super(props)
+      super(props)
+      
   this.state = {
       orderForm: {
         ProductCategory: {
@@ -58,11 +70,15 @@ class AddProduct extends Component {
         
       },
       formIsValid: false,
-      checked:true,
-      file:null
+      checked:false,
+      file:null,
+      id:null
   }
   this.handleChange = this.handleChange.bind(this)
+
   }
+
+  
 
 handleChange(event) {
   this.setState({
@@ -81,7 +97,11 @@ handleChange(event) {
       formData.topProducts = this.state.checked;
       formData.image = this.state.file;
     console.log(formData);
-    this.props.onAddProduct('p88',formData.ProductTitle,formData.ProductCategory,formData.image,formData.Price,formData.topProducts)
+    if(this.props.id){
+        this.props.onEditProduct(this.state.id,formData.ProductTitle,formData.ProductCategory,formData.image,formData.Price,formData.topProducts)
+    }else{
+        this.props.onAddProduct('p88',formData.ProductTitle,formData.ProductCategory,formData.image,formData.Price,formData.topProducts)
+    }
   }
 
   
@@ -104,6 +124,7 @@ handleChange(event) {
   }
 
   render () {
+
       const formElementsArray = [];
       for (let key in this.state.orderForm) {
           formElementsArray.push({
@@ -133,8 +154,8 @@ handleChange(event) {
               
               </label>
               <div>
-        <input type="file" onChange={this.handleChange}/>
-        {/* <img src={this.state.file}/> */}
+        <input type="file"  onChange={this.handleChange}/>
+                <b>{this.state.file}</b>
       </div>
               
               <div style={{display:'flex', flexDirection:'row',justifyContent:'space-evenly'}}>
@@ -154,11 +175,21 @@ handleChange(event) {
       );
   }
 }
+const mapStateToProps = state =>{
+    return{
+        product: state.product
+        // token: state.auth.token,
+        // userId:state.auth.userId
+    }
+};
+
 const mapDispatchToProps = dispatch => {
   return{
-      onAddProduct : (id,name,category,image,price,topProduct) => dispatch(actions.addProduct(id,name,category,image,price,topProduct))
+      onAddProduct : (id,name,category,image,price,topProduct) => dispatch(actions.addProduct(id,name,category,image,price,topProduct)),
+      onEditProduct : (id,name,category,image,price,topProduct) => dispatch(actions.editProduct(id,name,category,image,price,topProduct)),
+
   }
 };
 
 
-export default connect( '',mapDispatchToProps)(AddProduct);
+export default connect( mapStateToProps,mapDispatchToProps)(AddProduct);

@@ -2,6 +2,7 @@ export const CATEGORY_PRODUCT = 'CATEGORY_PRODUCT';
 export const SET_PRODUCT = 'SET_PRODUCT';
 export const RANGE_FILTER = 'RANGE_FILTER';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const SELECTOR = 'SELECTOR';
 
 
@@ -53,4 +54,20 @@ export const addProduct = (id,name,category,image,price,topProduct) => {
         })
     }
 }
+
+export const editProduct = (id,name,category,image,price,topProduct) => {
+    return(dispatch) => {
+        dispatch({
+            type:EDIT_PRODUCT,
+            id:id,
+            name:name,
+            category:category,
+            image:image,
+            price:price,
+            topProduct:topProduct
+        })
+    }
+}
+
+
 

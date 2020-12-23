@@ -5,7 +5,7 @@ import classes from './product.module.css';
 
 const  product = props =>  {
     return (
-        <div className={classes.productMain} >
+        <div className={classes.productMain} onClick={props.onClick} >
             <Card className={classes.product}>
                 <span style={{height:'70%'}}>
                 <img style={{width:'100%',height:'100%', objectFit:'fill'}} variant="top" src={props.image} />

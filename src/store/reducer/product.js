@@ -1,6 +1,6 @@
 import ProductsData from '../../data/product-data';
 import Product from '../../modal/Product';
-import {CATEGORY_PRODUCT,SET_PRODUCT,RANGE_FILTER,ADD_PRODUCT} from '../action/product';
+import {CATEGORY_PRODUCT,SET_PRODUCT,RANGE_FILTER,ADD_PRODUCT,EDIT_PRODUCT} from '../action/product';
 
 const initialState = {
     totalProducts: ProductsData,
@@ -36,6 +36,29 @@ export default (state = initialState,action ) => {
                 ...state,  
              products: state.products.concat(newProduct),
             }
+        case EDIT_PRODUCT:
+                const productIndex = state.products.findIndex(
+                    prod => prod.id === action.id
+                );
+                const updatedProduct = new Product(action.id,
+                    action.name,
+                    action.category,
+                    action.image,
+                    action.price,
+                    action.topProduct
+                   );
+                    const updatedProducts = [...state.products];
+                    updatedProducts[productIndex] = updatedProduct;
+                // const availableProductIndex = state.availableProducts.findIndex(
+                //     prod => prod.id === action.pid
+                // );
+                // const updatedAvailableProducts = [...state.availableProducts];
+                // updatedAvailableProducts[availableProductIndex] = updatedProduct;
+                return{
+                    ...state,
+                    products: updatedProducts,
+                    
+                }
         case CATEGORY_PRODUCT:
             let filteredArray = [];
             state.products.map((value,index) => {

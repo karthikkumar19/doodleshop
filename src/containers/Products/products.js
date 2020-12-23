@@ -5,18 +5,29 @@ import {useDispatch,useSelector} from 'react-redux';
 import Product from '../../components/Product/product';
 import {Dropdown,DropdownButton} from 'react-bootstrap';
 import * as productActions from '../../store/action/product';
+import Modal from '../../components/UI/Modal/Modal';
+import AddProduct from '../Products/AddProduct';
+
 
 const PER_PAGE = 9;
 
 const Products = () =>  {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(0);
+    const [productId,setProductId] = useState('');
+    const [productName,setProductName] = useState('');
+    const [categoryName,setCategoryName] = useState('');
+    const [price,setPrice] = useState('');
+    const [image,setImage] = useState('');
+    const [checked, setChecked] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false);
+
     const [currentFilter, setCurrentFilter] = useState('Default Sorting')
     let isFiltered = useSelector(state => state.categoryName);
     console.log(isFiltered)
     let ProductData = useSelector(state => state.products);
     let isRanged = useSelector(state => state.rangeFilter);
-    console.log(isRanged)
+    console.log('is ranged',isRanged)
       let CategorizedData = useSelector(state => state.categorizedProducts);
       let RangeData = useSelector(state => state.rangeFilterdData);
       console.log('rd',RangeData)
@@ -35,6 +46,23 @@ const Products = () =>  {
    }
 
     console.log(ProductData);
+const modalHandler = (id,name,category,price,checked,image) => {
+  setModalOpen(true);
+  setProductId(id);
+  setCategoryName(category);
+  setProductName(name);
+  setPrice(price);
+  setChecked(checked);
+  setImage(image)
+
+}
+
+const CancelHandler = () => {
+  setModalOpen(false)
+  }
+
+  let addproduct = <AddProduct id={productId} name={productName} 
+  category={categoryName} price={price} checked={checked} image={image}/>
 
 
     function handlePageClick({ selected: selectedPage }) {
@@ -46,7 +74,8 @@ const Products = () =>  {
       const currentPageData = ProductData
         .slice(offset, offset + PER_PAGE)
         .map(( value ) =>   <div className={classes.element}>
-        <Product name={value.name} image={value.image} price={value.price}/>
+        <Product onClick={() => modalHandler(value.id,value.name,value.category,value.price,value.top_product,value.image)} name={value.name}
+         image={value.image} price={value.price}/>
         </div> );
     
       const pageCount = Math.ceil(ProductData.length / PER_PAGE);
@@ -78,9 +107,10 @@ return (
           
         </div>
 <div className={classes.products}>
-  {/* {ProductsRender} */}
   {currentPageData}
-  
+  <Modal show={modalOpen} modalClosed={CancelHandler}>
+    {addproduct}
+              </Modal> 
   </div>
   <ReactPaginate
         previousLabel={"← "}
