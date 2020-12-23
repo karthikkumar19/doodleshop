@@ -9,13 +9,13 @@ const Category = () => {
   const dispatch =  useDispatch();
     return (
         <div className={classes.border}>
-            <h6>CATEGORIES</h6>
+            <h6 style={{fontWeight:'bold',color:'gray'}}>CATEGORIES</h6>
            <Card >
   <ListGroup variant="flush">
-    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Books'))} style={{backgroundColor:'whitesmoke'}}>Books</ListGroup.Item>
-    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Hoodie / T-shirt'))} style={{backgroundColor:'whitesmoke'}}>Hoodie / T-shirt</ListGroup.Item>
-    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Bags'))} style={{backgroundColor:'whitesmoke'}}>Bags</ListGroup.Item>
-    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Misc'))} style={{backgroundColor:'whitesmoke'}}>Misc</ListGroup.Item>
+    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Books'))} style={{backgroundColor:'whitesmoke',cursor:'pointer'}}><b>Books</b></ListGroup.Item>
+    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Hoodie / T-shirt'))} style={{backgroundColor:'whitesmoke',cursor:'pointer'}}><b>Hoodie / T-shirt</b></ListGroup.Item>
+    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Bags'))} style={{backgroundColor:'whitesmoke',cursor:'pointer'}}><b>Bags</b></ListGroup.Item>
+    <ListGroup.Item onClick={() => dispatch(productActions.categoryProduct('Misc'))} style={{backgroundColor:'whitesmoke',cursor:'pointer'}}><b>Misc</b></ListGroup.Item>
   </ListGroup>
 </Card>
         </div>

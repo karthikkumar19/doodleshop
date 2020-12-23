@@ -10,9 +10,9 @@ const topProduct = props => {
                 <img style={{objectFit:'fill',width:'60px',height:'60px'}} src={props.image} />
             </div>
             <div style={{margin:'5px'}}>
-                <h6>{props.name}</h6>
+                <b>{props.name}</b>
                 <SimpleRating/>
-                <b>$ {props.price}</b>
+                <h6 style={{color:'gray'}}>$ {props.price}</h6>
             </div>
         </div>
     )

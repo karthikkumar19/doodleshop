@@ -5,17 +5,14 @@ import {connect} from 'react-redux';
 import {checkValidity,updateObject} from '../../shared/utility';
 import * as actions from '../../store/action/product';
 class AddProduct extends Component {
-   componentWillReceiveProps(props){
-       console.log('props',props.image)
+   UNSAFE_componentWillReceiveProps(props){
+      
     var someProperty = {...this.state.orderForm}
     someProperty.ProductTitle.value = props.name;
     someProperty.ProductCategory.value = props.category;
     someProperty.Price.value = props.price;
-    
-  //   someProperty.followers.value = followers;
-  //   someProperty.instaId.value = insta_id;
-  //   someProperty.pageLink.value = link;
-    this.setState({someProperty,checked:props.checked,file:props.image,formIsValid:true,id:props.id})
+        let formValid = props.id ? true : false;
+    this.setState({someProperty,checked:props.checked,file:props.image,formIsValid:formValid,id:props.id})
    }
   constructor(props){
       super(props)
@@ -26,14 +23,15 @@ class AddProduct extends Component {
           elementType: 'select',
           elementConfig: {
               options: [
-                  {value: 'Books', displayValue: 'Books'},
+                  {value:'none', displayValue:'Select an Option'},
+                  {value: 'Books',  displayValue: 'Books'},
                   {value: 'Hoodie / T-shirt', displayValue: 'Hoodie / T-shirt'},
                   {value: 'Bags', displayValue:'Bags'},
                   {value: 'Misc', displayValue:'Misc'}
               ],
               
           },
-          value: 'Books',
+          value: 'Select an Option',
          
           validation: {},
           valid: true
@@ -57,11 +55,11 @@ class AddProduct extends Component {
                   type: 'text',
                   placeholder: 'Enter Price'
               },
-              value: '',
+              value: 0,
               validation: {
                   required: true,
                   minLength: 1,
-                  maxLength: 5,
+                  maxLength: 8,
                   isNumeric: true
               },
               valid: false,
@@ -71,7 +69,7 @@ class AddProduct extends Component {
       },
       formIsValid: false,
       checked:false,
-      file:null,
+      file:'no image selected',
       id:null
   }
   this.handleChange = this.handleChange.bind(this)
@@ -96,14 +94,26 @@ handleChange(event) {
       }
       formData.topProducts = this.state.checked;
       formData.image = this.state.file;
-    console.log(formData);
+   
     if(this.props.id){
         this.props.onEditProduct(this.state.id,formData.ProductTitle,formData.ProductCategory,formData.image,formData.Price,formData.topProducts)
     }else{
-        this.props.onAddProduct('p88',formData.ProductTitle,formData.ProductCategory,formData.image,formData.Price,formData.topProducts)
+        this.props.onAddProduct(Math.random(),formData.ProductTitle,formData.ProductCategory,formData.image,formData.Price,formData.topProducts);
+        var someProperty = {...this.state.orderForm}
+        // someProperty.ProductTitle.value = null;
+        // someProperty.ProductCategory.value = null;
+        someProperty.Price.value = '';
+        //     let formValid = false;
+        let price = this.state.orderForm.Price;
+        this.setState({someProperty,checked:false,file:null,someProperty})
+        console.log(this.state.orderForm)
     }
+   
+    this.props.onCancel()
   }
-
+  cancelCourse = () => { 
+    document.getElementById("clear").reset();
+  }
   
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -133,10 +143,10 @@ handleChange(event) {
           });
       }
       let form = (
-          <form onSubmit={this.orderHandler}>
+          <form id='clear' onSubmit={this.orderHandler}  >
               {formElementsArray.map(formElement => (
-                <div >
-                <b style={{float:'left', padding:'10px'}}>{formElement.id}</b>
+                <div key={formElement.id}>
+                <h6 style={{float:'left', padding:'6px'}}>{formElement.id}</h6>
                   <Input 
                       key={formElement.id}
                       elementType={formElement.config.elementType}
@@ -147,20 +157,28 @@ handleChange(event) {
                       touched={formElement.config.touched}
                       changed={(event) => this.inputChangedHandler(event, formElement.id)} /> </div>
               ))}
-              <label > <input type="checkbox"
+              <label style={{fontWeight:'500'}}> <input type="checkbox"
+              style={{margin:'5px'}}
                checked={this.state.checked} 
                onChange={this.handleCheckClick} 
-               />Top Products
-              
+               /> 
+              Top Products
               </label>
-              <div>
-        <input type="file"  onChange={this.handleChange}/>
-                <b>{this.state.file}</b>
+              <div style={{display:'flex',flexDirection:'column'}}>
+              <h6 style={{float:'left', padding:'10px'}}>Upload Product Image</h6>
+              {/* <label style={{width:'20%'}} className={classes.label}  for="files">Upload</label> */}
+        <input className={classes.label} type="file" style={{margin:'10px'}}   id="files"  onChange={this.handleChange}/> 
+                <b  style={{overflow:'scroll',marginTop:'0px'}}>{this.state.file}</b>
       </div>
-              
-              <div style={{display:'flex', flexDirection:'row',justifyContent:'space-evenly'}}>
-              <button btnType="Success" >CANCEL</button>
-              <button btnType="Success" disabled={!this.state.formIsValid}>SAVE</button>
+              <hr/>
+              <div style={{display:'flex', flexDirection:'row',justifyContent:'space-around',margin:'10px'}}>
+              <button    className={classes.buttonCancel}>
+       <b style={{color:'black'}}>Cancel</b> 
+      </button>
+              <button disabled={!this.state.formIsValid}  className={classes.button}>
+       <b style={{color:'white'}}>SAVE</b> 
+      </button>
+             
 
               </div>
           </form>
@@ -169,19 +187,13 @@ handleChange(event) {
     
       return (
           <div className={classes.ContactData}>
-              <h4 style={{marginBottom:'20px'}}>Add Product</h4>
+              <h4 style={{textAlign:'center'}}>Add Product</h4>
               {form}
           </div>
       );
   }
 }
-const mapStateToProps = state =>{
-    return{
-        product: state.product
-        // token: state.auth.token,
-        // userId:state.auth.userId
-    }
-};
+
 
 const mapDispatchToProps = dispatch => {
   return{
@@ -192,4 +204,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect( mapStateToProps,mapDispatchToProps)(AddProduct);
+export default connect( '',mapDispatchToProps)(AddProduct);

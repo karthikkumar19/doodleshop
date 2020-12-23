@@ -5,7 +5,6 @@ import {CATEGORY_PRODUCT,SET_PRODUCT,RANGE_FILTER,ADD_PRODUCT,EDIT_PRODUCT} from
 const initialState = {
     totalProducts: ProductsData,
     categorizedProducts:ProductsData,
-    defaultProduct:ProductsData,
     products : ProductsData,
     rangeFilterdData:ProductsData,
     categoryName:false,
@@ -13,7 +12,7 @@ const initialState = {
   
 }
 
-export default (state = initialState,action ) => {
+export default  (state = initialState,action ) => {
     switch(action.type){
 
         case SET_PRODUCT:
@@ -49,14 +48,24 @@ export default (state = initialState,action ) => {
                    );
                     const updatedProducts = [...state.products];
                     updatedProducts[productIndex] = updatedProduct;
-                // const availableProductIndex = state.availableProducts.findIndex(
-                //     prod => prod.id === action.pid
-                // );
-                // const updatedAvailableProducts = [...state.availableProducts];
-                // updatedAvailableProducts[availableProductIndex] = updatedProduct;
+                const categorizedProductIndex = state.categorizedProducts.findIndex(
+                    prod => prod.id === action.id
+                );
+                const updatedCategorizedProducts = [...state.categorizedProducts];
+                updatedCategorizedProducts[categorizedProductIndex] = updatedProduct;
+
+                //for filtered products
+
+                const rangeFilteredProductIndex = state.rangeFilterdData.findIndex(
+                    prod => prod.id === action.id
+                );
+                const updatedRangeFilteredProducts = [...state.rangeFilterdData];
+                updatedRangeFilteredProducts[rangeFilteredProductIndex] = updatedProduct;
                 return{
                     ...state,
                     products: updatedProducts,
+                    categorizedProducts : updatedProducts,
+                    rangeFilterdData : updatedProducts
                     
                 }
         case CATEGORY_PRODUCT:
@@ -66,7 +75,6 @@ export default (state = initialState,action ) => {
                     filteredArray.push(value)
                 }
             })
-            console.log('filter',filteredArray)
             return{
                 ...state,
                 
@@ -79,7 +87,6 @@ export default (state = initialState,action ) => {
                         filteredRangeArray.push(value)
                     }
                 })
-                console.log(filteredRangeArray)
                     return{
                         ...state,
                         categoryName:false,
@@ -88,8 +95,9 @@ export default (state = initialState,action ) => {
                         // products:state.categorizedProducts.filter(product => 
                         //     product.price >= action.from && product.price <= action.to)
                     }
+                    default:
+                        return state
         }
         
-       
-    return state
+      
 };

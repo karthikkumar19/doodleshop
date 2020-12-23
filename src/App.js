@@ -3,9 +3,8 @@ import Home from './containers/Home/home';
 
 function App() {
   return (
-    <div >
+   
      <Home/>
-    </div>
   );
 }
 

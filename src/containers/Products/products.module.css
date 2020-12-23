@@ -21,24 +21,85 @@
   }
   
   .pagination a {
-    padding: 10px;
+    padding: 11px;
     border-radius: 5px;
     outline: 0;
     margin:10px;
     border: 1px solid silver;
-    color: gray;
-     text-decoration: none;
+    color:rgb(198, 197, 202);
+     /* text-decoration: none; */
   }
+
+  .pagination a:hover{
+    color:grey;
+  }
+
+  .label{
+    border: 1px solid red;
+    text-align: center;
+    border-radius: 3px;
+    padding: 2px;
+    color:red
+  }
+ 
+  .button{
+    font-size: 12px;
+    width:150px;
+    height: 40px;
+    margin: 4%;
+    margin-top: 2%;
+    margin-right: 5%;
+    height:'40px';
+    border: 1px solid red;
+    border-radius: 3px;
+    cursor: pointer;
+    color:white;
+    background: #e53935;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #e35d5b, #e53935); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+button:disabled{
+  background: rgb(rgb(236, 173, 173), green, blue);
+  color: #ccc;
+    cursor: not-allowed
+}
+
+.buttonCancel{
+  font-size: 12px;
+    width:150px;
+    height: 40px;
+    margin: 4%;
+    margin-top: 2%;
+    margin-right: 5%;
+    height:'40px';
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
 
 
 
   
   .pagination__link {
     font-weight: bold;
+    
+  }
+
+  .pagination__link a:hover{
+      color:grey
   }
   
-  .pagination__link__active a {
-    color: #fff;
+  .pagination__link__active   {
+    color: white;
+
+  }
+
+  .pagination__link__active a  {
+    color: white;
     background: red;
     border: 1px solid red;
 
@@ -49,12 +110,20 @@
     border: 1px solid rgb(198, 197, 202);
   }
 
+  .pagination__link__disabled a:hover {
+    color: rgb(198, 197, 202);
+    border: 1px solid rgb(198, 197, 202);
+  }
+
+
+
   .ContactData {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    text-align: center;
+    height: 10%;
+    /* text-align: center; */
   padding: 15px;
+  padding-top: 0px;
+
+ /* overflow: scroll; */
 }
 
 /* @media (min-width: 600px) {

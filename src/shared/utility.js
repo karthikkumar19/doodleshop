@@ -29,7 +29,7 @@ export const checkValidity = (value, rules) => {
     }
 
     if (rules.isNumeric) {
-        const pattern = /^\d+$/;
+        const pattern = /^[+-]?\d+(\.\d+)?$/;
         isValid = pattern.test(value) && isValid
     }
 

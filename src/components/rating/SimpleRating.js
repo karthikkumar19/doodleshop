@@ -3,7 +3,7 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
 export default function SimpleRating() {
-  const [value, setValue] = React.useState(5);
+  const [value, ] = React.useState(5);
 
   return (
     <div>

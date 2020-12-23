@@ -24,28 +24,28 @@ const Products = () =>  {
 
     const [currentFilter, setCurrentFilter] = useState('Default Sorting')
     let isFiltered = useSelector(state => state.categoryName);
-    console.log(isFiltered)
+    
     let ProductData = useSelector(state => state.products);
     let isRanged = useSelector(state => state.rangeFilter);
-    console.log('is ranged',isRanged)
+    
       let CategorizedData = useSelector(state => state.categorizedProducts);
       let RangeData = useSelector(state => state.rangeFilterdData);
-      console.log('rd',RangeData)
+      
     if(isFiltered){
       ProductData = CategorizedData
     }else if(isRanged){
       ProductData = RangeData
     }
 
-    console.log(currentFilter)
-    if(currentFilter == 'Price: Low to High'){
+   
+    if(currentFilter === 'Price: Low to High'){
         ProductData.sort((a,b) => a.price - b.price)
     }
-   else if(currentFilter == 'Price: High to Low'){
+   else if(currentFilter === 'Price: High to Low'){
     ProductData.sort((a,b) => b.price - a.price)
    }
 
-    console.log(ProductData);
+    
 const modalHandler = (id,name,category,price,checked,image) => {
   setModalOpen(true);
   setProductId(id);
@@ -62,7 +62,7 @@ const CancelHandler = () => {
   }
 
   let addproduct = <AddProduct id={productId} name={productName} 
-  category={categoryName} price={price} checked={checked} image={image}/>
+  category={categoryName} price={price} checked={checked} image={image} onCancel={CancelHandler}/>
 
 
     function handlePageClick({ selected: selectedPage }) {
@@ -73,9 +73,9 @@ const CancelHandler = () => {
     
       const currentPageData = ProductData
         .slice(offset, offset + PER_PAGE)
-        .map(( value ) =>   <div className={classes.element}>
-        <Product onClick={() => modalHandler(value.id,value.name,value.category,value.price,value.top_product,value.image)} name={value.name}
-         image={value.image} price={value.price}/>
+        .map(( value ) =>   <div className={classes.element} key={value.id}>
+        <Product   onClick={() => modalHandler(value.id,value.name,value.category,value.price,value.top_product,value.image)} name={value.name}
+         image={value.image} price={value.price} discount={value.discount}/>
         </div> );
     
       const pageCount = Math.ceil(ProductData.length / PER_PAGE);
@@ -89,7 +89,7 @@ const CancelHandler = () => {
         //    else if(value == 'dsc'){
         //     ProductData.sort((a,b) => b.price - a.price)
         //    }
-           if(value =='def'){
+           if(value ==='def'){
                dispatch(productActions.setProduct())
            }
       }
@@ -97,9 +97,9 @@ const CancelHandler = () => {
 return (
     <div>
         <div >
-        <b style={{marginLeft:'15px'}}>Showing 1 - {pageCount} of {ProductData.length} results</b>
+        <b style={{marginLeft:'15px',color:'gray'}}>Showing 1 - {pageCount} of {ProductData.length} results</b>
           
-            <DropdownButton  style={{float:'right',marginRight:'35px',backgroundColor:'silver'}} variant='default'  id="dropdown-basic-button" title={currentFilter}>
+            <DropdownButton  style={{float:'right',backgroundColor:'#f5f5f5', paddingLeft: '10px',paddingRight:'10px'}} variant='default'  id="dropdown-basic-button" title={currentFilter}>
 <Dropdown.Item onClick={() =>  filterHandler('Default Sorting','def')} >Default Sorting</Dropdown.Item>
 <Dropdown.Item onClick={() => filterHandler('Price: Low to High', 'asc')} >Price: Low to High</Dropdown.Item>
 <Dropdown.Item onClick={() => filterHandler('Price: High to Low','dsc')}>Price: High to Low</Dropdown.Item>
@@ -113,8 +113,8 @@ return (
               </Modal> 
   </div>
   <ReactPaginate
-        previousLabel={"← "}
-        nextLabel={" →"}
+        previousLabel={"<"}
+        nextLabel={">"}
         pageCount={pageCount}
         onPageChange={handlePageClick}
         containerClassName={classes.pagination}

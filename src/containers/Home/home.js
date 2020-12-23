@@ -4,7 +4,6 @@ import Filter from '../Filter/filter';
 import TopProducts from '../TopProducts/topProducts';
 import Products from '../Products/Products';
 import classes from './home.module.css';
-import Button from '@material-ui/core/Button';
 import Layout from '../../hoc/Layout';
 import Modal from '../../components/UI/Modal/Modal';
 import AddProduct from '../Products/AddProduct';
@@ -18,18 +17,18 @@ const Home = () => {
         setOpen(false)
         }
         
-    let addproduct = <AddProduct/>
+    let addproduct = <AddProduct onCancel={CancelHandler}/>
     return (
         <Layout>
 
       
-        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                        <h3 style={{margin:'5%',marginTop:'2%'}}>Products</h3>
-                        <Button onClick={() => setOpen(true)} variant="contained" color="secondary" style={{fontSize:'12px',width:'150px',height:'40px',margin:'4%',marginTop:'2%',marginRight:'8%'}}>
-       <b>Add Product</b> 
-      </Button>
+        <span style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+                        <h1 style={{marginLeft:'5%',paddingTop:'20px'}}>Products</h1>
+                        <button onClick={() => setOpen(true)}  className={classes.button}>
+       <b style={{color:'white'}}>Add Product</b> 
+      </button>
 
-        </div>
+        </span>
         <div className={classes.home}>
             <div className={classes.leftSection}>
                 <div className={classes.category}>
