@@ -15,6 +15,7 @@ const sideDrawer = ( props ) => {
         <Aux>
             <Backdrop show={props.open} clicked={props.closed}/>
             <div className={attachedClasses.join(' ')} onClick={props.closed}>
+                <h1 style={{marginLeft:'10px'}}>Products</h1>
                 <div className={classes.category}>
                 <Category/>
                 </div>
