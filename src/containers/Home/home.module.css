@@ -5,6 +5,8 @@
     height: 100%;
     margin-left: 2%;
     margin-right: 2%;
+    
+    font-size: 1.5vb;
 }
 
 .leftSection{
@@ -47,7 +49,7 @@
     width:150px;
     height: 40px;
     margin: 4%;
-    margin-top: 2%;
+    margin-top: 3%;
     margin-right: 5%;
     height:'40px';
     border: 1px solid red;
@@ -58,3 +60,43 @@ background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  /* Chrome 10-2
 background: linear-gradient(to right, #e35d5b, #e53935); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+
+.productsTitle{
+    margin-left: 5%;
+    padding-top: 20px
+}
+
+@media (max-width: 950px) {
+.home{
+    font-size: 2vw;
+}
+    .leftSection{
+        width: 30%;
+        height: 100%; 
+    }
+    
+    .rightSection{
+        width: 65%;
+        height: 100%;
+    }
+  }
+
+  @media (max-width: 651px) {
+    .home{
+        font-size: 3vw;
+    }
+        .leftSection{
+           display: none
+        }
+        
+        .rightSection{
+            width: 90%;
+            height: 100%;
+        }
+        .productsTitle{
+            visibility: hidden;
+        }
+        .button{
+            margin-top: 5%;
+        }
+      }

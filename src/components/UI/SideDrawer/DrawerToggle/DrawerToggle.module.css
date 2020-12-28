@@ -10,14 +10,18 @@
     cursor: pointer;
 }
 
+
+
 .DrawerToggle div {
     width: 90%;
     height: 3px;
-    background-color: white;
+    background-color: darkblue;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 652px) {
     .DrawerToggle {
         display: none;
     }
 }
+
+

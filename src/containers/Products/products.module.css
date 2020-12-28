@@ -12,6 +12,21 @@
     flex: 0 0 33.333333%;
 }
 
+.result{
+  margin-left: 15px;
+  color:gray
+}
+
+.dropDown{
+  float: right;
+  background-color: #f5f5f5;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -118,16 +133,38 @@ button:disabled{
 
 
   .ContactData {
-    height: 10%;
+    font-size: 2vh;
+    /* height: 10%; */
     /* text-align: center; */
   padding: 15px;
+  padding-bottom: 0px;
   padding-top: 0px;
 
  /* overflow: scroll; */
 }
 
-/* @media (min-width: 600px) {
-    .ContactData {
-        width: 500px;
-    }
-} */
+
+@media(min-height: 900px){
+  .ContactData{
+    font-size: 1vh
+  }
+}
+@media (max-width: 950px) {
+
+  .element{
+    flex: 0 0 50%;
+}
+}
+
+@media (max-width: 650px) {
+
+.result{
+  margin-left: 0px;
+}
+}
+
+@media(max-width: 420px){
+  .dropDown{
+    width: 60%;
+  }
+}

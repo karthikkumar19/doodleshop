@@ -3,7 +3,7 @@
     z-index: 500;
     background-color: white;
     width: 60%;
-    height: 85%;
+    /* height: 85%; */
     border-radius: 10px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #ccc;
@@ -18,7 +18,37 @@
 
 @media (min-width: 600px) {
     .Modal {
-        width: 500px;
-        left: calc(50% - 250px);
+        width: 40%;
+        left: calc(50% - 20%);
+    }
+}
+
+@media(max-width:950px){
+    .Modal {
+        width: 50%;
+        left: calc(50% - 25%);
+    }
+}
+
+@media(max-width:600px){
+    .Modal {
+        width: 60%;
+        left: calc(50% - 30%);
+        height: 80%;
+    }
+}
+
+@media(max-width:450px){
+    .Modal {
+        width: 70%;
+        left: calc(50% - 35%);
+        height: 85%;
+    }
+}
+
+@media(max-width:350px){
+    .Modal {
+        width: 90%;
+        left: calc(50% - 45%);
     }
 }

@@ -48,7 +48,7 @@ export default function RangeSlider() {
        <b style={{color:'white'}}>Filter</b> 
       </Button>
       <div>
-      <b style={{color:'gray'}}>Price:</b><b style={{color:'gray'}}>${value[0]}-${value[1]}</b>
+      <b style={{color:'gray',fontSize:'1vb'}}>Price:</b><b style={{color:'gray',fontSize:'1vb'}}>${value[0]}-${value[1]}</b>
 
       </div>
       </div>

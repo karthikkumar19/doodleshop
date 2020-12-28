@@ -165,9 +165,9 @@ handleChange(event) {
               Top Products
               </label>
               <div style={{display:'flex',flexDirection:'column'}}>
-              <h6 style={{float:'left', padding:'10px'}}>Upload Product Image</h6>
+              <h6 style={{float:'left', padding:'5px'}}>Upload Product Image</h6>
               {/* <label style={{width:'20%'}} className={classes.label}  for="files">Upload</label> */}
-        <input className={classes.label} type="file" style={{margin:'10px'}}   id="files"  onChange={this.handleChange}/> 
+        <input className={classes.label} type="file" style={{margin:'5px',marginBottom:'0px'}}   id="files"  onChange={this.handleChange}/> 
                 <b  style={{overflow:'scroll',marginTop:'0px'}}>{this.state.file}</b>
       </div>
               <hr/>

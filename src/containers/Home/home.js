@@ -23,7 +23,7 @@ const Home = () => {
 
       
         <span style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                        <h1 style={{marginLeft:'5%',paddingTop:'20px'}}>Products</h1>
+                        <h1 className={classes.productsTitle}>Products</h1>
                         <button onClick={() => setOpen(true)}  className={classes.button}>
        <b style={{color:'white'}}>Add Product</b> 
       </button>

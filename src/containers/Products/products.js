@@ -96,15 +96,15 @@ const CancelHandler = () => {
 
 return (
     <div>
-        <div >
-        <b style={{marginLeft:'15px',color:'gray'}}>Showing 1 - {pageCount} of {ProductData.length} results</b>
+        <div  >
           
-            <DropdownButton  style={{float:'right',backgroundColor:'#f5f5f5', paddingLeft: '10px',paddingRight:'10px'}} variant='default'  id="dropdown-basic-button" title={currentFilter}>
-<Dropdown.Item onClick={() =>  filterHandler('Default Sorting','def')} >Default Sorting</Dropdown.Item>
+            <DropdownButton  className={classes.dropDown}  variant='default'  id="dropdown-basic-button" title={currentFilter}>
+<Dropdown.Item  onClick={() =>  filterHandler('Default Sorting','def')} >Default Sorting</Dropdown.Item>
 <Dropdown.Item onClick={() => filterHandler('Price: Low to High', 'asc')} >Price: Low to High</Dropdown.Item>
 <Dropdown.Item onClick={() => filterHandler('Price: High to Low','dsc')}>Price: High to Low</Dropdown.Item>
 </DropdownButton>
-          
+<b className={classes.result}>Showing 1 - {pageCount} of {ProductData.length} results</b>
+
         </div>
 <div className={classes.products}>
   {currentPageData}
